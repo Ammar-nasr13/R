@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روما حبيبتي 💖</title>
+    <!-- Google Fonts for Arabic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- CSS Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Floating Hearts -->
+    <canvas id="heartsCanvas"></canvas>
+
+    <!-- Background Audio Element -->
+    <audio id="bg-audio"></audio>
+
+    <!-- 1. LANDING / WELCOME SCREEN -->
+    <div id="landing-screen" class="screen active">
+        <div class="glass-card landing-card">
+            <div class="heart-pulse-wrapper">
+                <div class="glowing-heart-pulse">
+                    <span class="heart-letter">R</span>
+                </div>
+            </div>
+            <h1 class="landing-title">روما حبيبة قلبي 💖</h1>
+            <p class="landing-subtitle">افتحي الرسالة يا روح قلبي 💖</p>
+            <button id="open-btn" class="btn btn-primary pulse-btn">رسالتك يا روما 💖</button>
+        </div>
+    </div>
+
+    <!-- 2. MAIN APOLOGY SCREEN -->
+    <div id="main-screen" class="screen">
+        <div class="glass-card main-card">
+            <!-- Header with Glowing Letter R -->
+            <div class="header-r">
+                <span class="r-letter">R</span>
+            </div>
+
+            <!-- The Apology Letter Card -->
+            <div class="apology-card">
+                <div class="card-inner">
+                    <p id="apology-text" class="apology-text"></p>
+                </div>
+            </div>
+
+            <!-- Music Player Container -->
+            <div class="music-player">
+                <div class="player-top">
+                    <!-- Spinning Vinyl Record CD -->
+                    <div class="cd-wrapper">
+                        <div id="cd-disc" class="cd-disc">
+                            <div class="cd-center">R</div>
+                        </div>
+                    </div>
+                    <!-- Song Title -->
+                    <div class="song-info">
+                        <span class="music-label">الموسيقى المشغلة 🎵</span>
+                        <h3 id="song-title" class="song-title">تحميل الأغنية...</h3>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <div class="time-info">
+                        <span id="current-time">0:00</span>
+                        <span id="total-duration">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Player Controls (SVGs for premium look) -->
+                <div class="player-controls">
+                    <button id="prev-btn" class="control-btn" title="السابق">
+                        <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6L18 6v12z"/></svg>
+                    </button>
+                    <button id="play-btn" class="control-btn play-pause-btn" title="تشغيل / إيقاف">
+                        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg id="pause-icon" class="hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <button id="next-btn" class="control-btn" title="التالي">
+                        <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zm9-12v12h2V6z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Decision Buttons -->
+            <div class="decision-section">
+                <h4 class="decision-title">هل سامحتيني؟ 🥺</h4>
+                <div class="buttons-container">
+                    <button id="forgive-btn" class="btn btn-success">سامحتك يا قلبي 💖</button>
+                    <button id="angry-btn" class="btn btn-danger">لسه زعلانة 🥺</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal/Overlay -->
+    <div id="success-overlay" class="overlay">
+        <div class="glass-card success-card">
+            <div class="success-heart">💖</div>
+            <h2>أنا أسعد واحد في الدنيا دلوقتي! 🎉</h2>
+            <p>ربنا ما يحرمني منك أبداً يا روما يا كل دنيتي. بحبك وبموت فيكي! 🥰❤️</p>
+            <button id="close-success-btn" class="btn btn-primary">حبيبي 💖</button>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

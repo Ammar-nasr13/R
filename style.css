@@ -1,0 +1,628 @@
+/* Custom CSS Design for Roma's Apology Website */
+:root {
+    --bg-gradient: radial-gradient(circle, #3a0d17 0%, #0d0205 100%);
+    --primary-color: #ff3366;
+    --primary-glow: rgba(255, 51, 102, 0.6);
+    --secondary-color: #ff66b2;
+    --success-color: #2ec4b6;
+    --success-glow: rgba(46, 196, 182, 0.6);
+    --text-white: #ffffff;
+    --text-muted: #e0d0d5;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: var(--text-white);
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Canvas for Floating Hearts */
+#heartsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Screen Management */
+.screen {
+    position: absolute;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: 5;
+}
+
+.screen.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* Premium Glassmorphism Card Style */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px 24px;
+    box-shadow: var(--glass-shadow);
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* -- LANDING SCREEN -- */
+.landing-card {
+    border: 1px solid rgba(255, 51, 102, 0.2);
+}
+
+.heart-pulse-wrapper {
+    margin: 30px auto;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glowing-heart-pulse {
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-color);
+    position: relative;
+    transform: rotate(-45deg);
+    animation: heartPulse 1.2s infinite ease-in-out;
+    box-shadow: 0 0 40px var(--primary-glow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glowing-heart-pulse::before,
+.glowing-heart-pulse::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.glowing-heart-pulse::before {
+    top: -50px;
+    left: 0;
+}
+
+.glowing-heart-pulse::after {
+    top: 0;
+    left: 50px;
+}
+
+.heart-letter {
+    font-family: 'Dancing Script', cursive;
+    color: var(--text-white);
+    font-size: 4rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    z-index: 10;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes heartPulse {
+    0% {
+        transform: rotate(-45deg) scale(0.9);
+        box-shadow: 0 0 30px var(--primary-glow);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.1);
+        box-shadow: 0 0 60px rgba(255, 51, 102, 0.9);
+    }
+    100% {
+        transform: rotate(-45deg) scale(0.9);
+        box-shadow: 0 0 30px var(--primary-glow);
+    }
+}
+
+.landing-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(45deg, #ffffff, var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.landing-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* -- BUTTONS -- */
+.btn {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    user-select: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-white);
+    box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.6);
+}
+
+.pulse-btn {
+    animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* -- MAIN SCREEN -- */
+.header-r {
+    margin: 10px auto 20px auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(255, 51, 102, 0.15);
+    border: 1px solid rgba(255, 51, 102, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.r-letter {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.apology-card {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 25px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.apology-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-white);
+    text-align: right;
+    white-space: pre-line;
+}
+
+/* Typing Cursor Effect */
+.apology-text::after {
+    content: "|";
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-right: 3px;
+    animation: blink 0.7s infinite;
+}
+
+.apology-text.typing-finished::after {
+    display: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* -- MUSIC PLAYER -- */
+.music-player {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 25px;
+}
+
+.player-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.cd-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.cd-disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #333 30%, #111 60%, #000 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotateCD 8s linear infinite;
+    animation-play-state: paused;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.cd-disc.playing {
+    animation-play-state: running;
+}
+
+.cd-center {
+    width: 18px;
+    height: 18px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: white;
+    font-size: 9px;
+    font-family: 'Dancing Script', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+@keyframes rotateCD {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.song-info {
+    text-align: right;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.music-label {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.song-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Progress bar styling */
+.progress-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 6px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.progress-bar {
+    background: linear-gradient(to left, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Controls */
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.control-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text-white);
+    transition: fill 0.2s ease;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.control-btn:hover svg {
+    fill: var(--primary-color);
+}
+
+.play-pause-btn {
+    background: rgba(255, 51, 102, 0.15);
+    border: 1px solid rgba(255, 51, 102, 0.3);
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+}
+
+.play-pause-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-color);
+}
+
+.play-pause-btn:hover {
+    background: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: scale(1.05);
+}
+
+.play-pause-btn:hover svg {
+    fill: var(--text-white);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* -- DECISION SECTION -- */
+.decision-section {
+    margin-top: 10px;
+}
+
+.decision-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    min-height: 60px;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-color), #20968b);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px var(--success-glow);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 196, 182, 0.8);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #7c1a2e, #500d1b);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    /* transition: top/left/transform custom-handled in JS */
+}
+
+/* -- SUCCESS OVERLAY -- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.success-card {
+    max-width: 420px;
+    border: 1px solid var(--success-color);
+    box-shadow: 0 10px 40px var(--success-glow);
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.overlay.active .success-card {
+    transform: scale(1);
+}
+
+.success-heart {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    animation: heartBeatSuccess 1s infinite alternate;
+}
+
+@keyframes heartBeatSuccess {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+.success-card h2 {
+    color: var(--success-color);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.success-card p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 24px 18px;
+    }
+    .landing-title {
+        font-size: 1.5rem;
+    }
+    .apology-text {
+        font-size: 1.05rem;
+    }
+    .btn {
+        padding: 12px 22px;
+        font-size: 1rem;
+    }
+}
+
+/* Extra small devices (iPhone SE, small Android devices down to 320px) */
+@media (max-width: 360px) {
+    .glass-card {
+        padding: 16px 12px;
+        border-radius: 18px;
+    }
+    .landing-title {
+        font-size: 1.25rem;
+    }
+    .landing-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    .heart-pulse-wrapper {
+        margin: 20px auto;
+        width: 120px;
+        height: 120px;
+    }
+    .glowing-heart-pulse {
+        width: 80px;
+        height: 80px;
+    }
+    .glowing-heart-pulse::before,
+    .glowing-heart-pulse::after {
+        width: 80px;
+        height: 80px;
+    }
+    .glowing-heart-pulse::before {
+        top: -40px;
+    }
+    .glowing-heart-pulse::after {
+        left: 40px;
+    }
+    .heart-letter {
+        font-size: 3rem;
+    }
+    .apology-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .music-player {
+        padding: 10px;
+    }
+    .cd-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    .song-title {
+        font-size: 0.9rem;
+    }
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    .player-controls {
+        gap: 10px;
+    }
+    .control-btn {
+        width: 32px;
+        height: 32px;
+    }
+    .play-pause-btn {
+        width: 42px;
+        height: 42px;
+    }
+}
